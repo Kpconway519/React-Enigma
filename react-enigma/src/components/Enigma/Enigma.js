@@ -10,27 +10,28 @@ class Enigma extends Component {
             output: ""
         }
     }
-    
+
     acceptInput = (event) => {
-        this.setState({
-            output: event
-        })
+        // this.setState({
+        //     output: event
+        // })
+        window.alert('input')
     }
 
     render() {
 
-        return(
-            
+        return (
+
             <div>
-            <UserInput
-            onChange={this.acceptInput}/>
-            <Output 
-            output={this.state.output}
-            />
+                <UserInput
+                    onChange={this.acceptInput} />
+                <Output
+                    output={this.state.output}
+                />
             </div>
-        
+
         )
     }
-} 
+}
 
 export default Enigma

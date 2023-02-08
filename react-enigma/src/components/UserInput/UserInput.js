@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 
 
-class UserInput extends React.Component {
+class UserInput extends Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
