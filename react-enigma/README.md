@@ -29,3 +29,8 @@ TBA. may be simplest component, we'll see.
 5. UI
 
 Should start out as simple as possible initially. Will compare against an online enigma machine to test.
+
+
+2/28/23 Update:
+
+Making Trello board. URL is https://trello.com/b/6KMrTXuc/react-enigma

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import UserInput from "../UserInput/UserInput"
-import Output from "../Output/Output"
+import Keyboard from "./keyboard"
+import Output from "./output"
+import Plugboard from "./plugboard"
+import Rotors from "./rotors"
 
 class Enigma extends Component {
 
@@ -11,23 +13,15 @@ class Enigma extends Component {
         }
     }
 
-    acceptInput = (event) => {
-        // this.setState({
-        //     output: event
-        // })
-        window.alert('input')
-    }
 
     render() {
 
         return (
-
             <div>
-                <UserInput
-                    onChange={this.acceptInput} />
-                <Output
-                    output={this.state.output}
-                />
+                <Rotors />
+                <Keyboard />
+                <Plugboard />
+                <Output />
             </div>
 
         )
