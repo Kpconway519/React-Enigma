@@ -7,14 +7,19 @@ class Output extends Component {
         this.state = {
             output: ""
         }
+        this.updateText = () => {
+            console.log("updateText called", this.props.characters)
+            return (this.props.characters)
+        }
     }
 
 
     render() {
 
         return (
-        <div>
-            <textarea />
+            <div>
+            {(console.log(this.props))}
+            <textarea onChange={this.updateText} defaultValue={this.props.characters}/>
         </div>
 
         )

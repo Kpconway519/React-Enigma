@@ -4,6 +4,12 @@ import 'react-simple-keyboard/build/css/index.css';
 
 class KeyboardComponent extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {}
+    this.typeChars = this.props.typeChars.bind(this);
+}
+
     onChange = (input) => {
         console.log("Input changed", input);
       }
@@ -16,7 +22,7 @@ class KeyboardComponent extends Component {
         return (
           <Keyboard
             onChange={this.onChange}
-            onKeyPress={this.onKeyPress}
+            onKeyPress={this.props.typeChars}
           />
         );
       }
