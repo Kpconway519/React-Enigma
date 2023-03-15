@@ -8,6 +8,7 @@ class Rotors extends Component {
         this.state = {
             output: ""
         }
+        this.setRotors = this.props.setRotors.bind(this);
     }
 
 
@@ -15,9 +16,18 @@ class Rotors extends Component {
 
         return (
         <div className={"rotorsContainer"}>
-            <div className={"rotor rotor1"}>rotor1</div>
-            <div className={"rotor rotor2"}>rotor2</div>
-            <div className={"rotor rotor3"}>rotor3</div>
+            <div className={"rotor rotor1"}>
+                rotor1
+            <select></select>    
+            </div>
+            <div className={"rotor rotor2"}>
+                rotor2
+                <select></select>    
+            </div>
+            <div className={"rotor rotor3"}>
+                rotor3
+                <select></select>    
+            </div>
         </div>
     )
     }

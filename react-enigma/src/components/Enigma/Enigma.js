@@ -12,22 +12,22 @@ class Enigma extends Component {
         super(props)
         this.state = {
             output: "",
-            characters: ""
+            characters: "",
+            rotorSettings: {}
         }
 
         this.rotorConfig = rotorConfig;
+        let rotorsConfigTest = composeRotors(this.rotorConfig[3], this.rotorConfig[2], this.rotorConfig[1], this.rotorConfig.reflector);
 
         this.typeChars = async (char) => {
             console.log("typechars called, char is: ", char, "this.state.characters is: ", this.state.characters)
-            let rotorsConfigTest = composeRotors(this.rotorConfig[1], this.rotorConfig[2], this.rotorConfig[3], this.rotorConfig.reflector);
-            const enigmaChar = processRotors(char, rotorsConfigTest);
+            const enigmaChar = processRotors(char.toUpperCase(), rotorsConfigTest);
             this.setState({characters: (this.state.characters + await enigmaChar)})
         };
 
         this.handleCharacters = () => this.state.characters;
 
-        // const rotorsConfigTest = composeRotors(rotors[1], rotors[2], rotors[3], rotors.reflector);
-        // processRotors("Y", rotorsConfigTest)
+        this.selectRotors = (rotor1, rotor2, rotor3, reflector) => this.setState({rotorSettings: composeRotors(rotor1, rotor2, rotor3, reflector)})
     }
 
 
@@ -37,7 +37,7 @@ class Enigma extends Component {
 
         return (
             <div>
-                <Rotors />
+                <Rotors setRotors={this.selectRotors}/>
                 <Keyboard typeChars={this.typeChars}/>
                 <Plugboard />
                 <Output characters={this.state.characters} />

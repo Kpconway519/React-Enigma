@@ -11,9 +11,13 @@ return (
 const processRotors = async (letter, settings) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const { rotorsConfig: rc, reflector } = settings
+    console.log('rotorsconfig', rc)
+    console.log('reflector', reflector);
+
 
     // increment the position of the first rotor every time. TODO: come in and add in the notch functionality.
     rc[0].position === 26 ? rc[0].position = 1 : rc[0].position++;
+
 
     const findLetterPosition = async (rotor, letter, direction = "forwards") => {
         if (typeof letter === "number") letter = alphabet[letter];

@@ -3,21 +3,21 @@ export default { // A becomes => EJKC
         name: "I",
         wiring: "EKMFLGDQVZNTOWYHXUSPAIBRCJ",// for first rotation knotch, A is in the position where B used to be. K was the old output, but K is in the position where J used to be. Alphabet order is the absolute reference for position.
         notch: [1],
-        position: 24,
+        position: 1,
         ringSetting: 1
     },
     2: {
         name: "II",
         wiring: "AJDKSIRUXBLHWTMCQGZNPYFVOE",// 
         notch: [1],
-        position: 9,
+        position: 1,
         ringSetting: 1
     },
     3: {
         name: "III",
         wiring: "BDFHJLCPRTXVZNYEIWGAKMUSQO",// 
         notch: [1],
-        position: 22,
+        position: 1,
         ringSetting: 1
     },
     4: {
