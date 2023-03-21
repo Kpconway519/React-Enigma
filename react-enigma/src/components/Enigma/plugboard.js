@@ -9,6 +9,8 @@ class Plugboard extends Component {
         }
     }
 
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    populateAlphabet = this.alphabet.split("").map((letter, index) => <option key={index} value={letter}>{letter}</option>)
 
     render() {
 
@@ -18,15 +20,14 @@ class Plugboard extends Component {
                     First Letter
                 </label>
                 <select>
-                    <option value="a">A</option>
-                    <option value="b">B</option>
+                    {this.populateAlphabet}
                 </select>
                 <label>
                     Second Letter
                 </label>
                 <select>
-                    <option value="a">C</option>
-                    <option value="b">D</option>
+                    {this.populateAlphabet}
+
                 </select>
                 <button name={"addPlugboardSet"}>+</button>
             </div>
