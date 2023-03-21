@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import rotorConfig from "./rotorConfig";
 
 
 class Rotors extends Component {
@@ -9,7 +10,10 @@ class Rotors extends Component {
             output: ""
         }
         this.setRotors = this.props.setRotors.bind(this);
+        this.rotorsConfig = this.props.defaultRotorConfig.rotorsConfig;
     }
+    
+    // rotorsConfig = this.defaultRotorConfig.rotorsConfig;
 
     rotorWheels = [
         "I",
@@ -32,24 +36,29 @@ class Rotors extends Component {
 
     populateNumbers = () => this.countArr().map((num, index )=> <option key={index} value={num}>{num}</option>);
 
-    populateRotors = () => this.rotorWheels.map((wheel, index) => <option key={index} value={wheel}>{wheel}</option>)
+    populateRotors = () => this.rotorWheels.map((wheel, index) => <option key={index} value={wheel}>{wheel}</option>);
 
+    setSelectedRotor = (rotor, value) => console.log(rotor, value, "rotor, value")
 
+    
+    
     render() {
+        // const [selectedRotor, setSelectedRotor ] = useState('I');
 
         return (
             <div className={"rotorsContainer"}>
+                {console.log(this.rotorsConfig, "defaultrotorconfig")}
                 <div className={"rotor rotor1"}>
                     <h3>Rotor 1</h3>
                     <label>Rotor Number</label>
-                    <select>
+                    <select value={"pizza"} onChange={e => this.setSelectedRotor(1, e.target.value)}>
                         {this.populateRotors()}
                     </select>
                     <label>Ring Setting</label>
                     <select>
                         {this.populateNumbers()}
                     </select>
-                    <label>Rotor Offset</label>
+                    <label>Rotor Position</label>
                     <select>
                         {this.populateNumbers()}
                     </select>
@@ -57,14 +66,14 @@ class Rotors extends Component {
                 <div className={"rotor rotor2"}>
                     <h3>Rotor 2</h3>
                     <label>Rotor Number</label>
-                    <select>
+                    <select defaultValue="II">
                         {this.populateRotors()}
                     </select>
                     <label>Ring Setting</label>
                     <select>
                         {this.populateNumbers()}
                     </select>
-                    <label>Rotor Offset</label>
+                    <label>Rotor Position</label>
                     <select>
                         {this.populateNumbers()}
                     </select>
@@ -72,14 +81,14 @@ class Rotors extends Component {
                 <div className={"rotor rotor3"}>
                     <h3>Rotor 3</h3>
                     <label>Rotor Number</label>
-                    <select>
+                    <select defaultValue="III">
                         {this.populateRotors()}
                     </select>
                     <label>Ring Setting</label>
                     <select>
                         {this.populateNumbers()}
                     </select>
-                    <label>Rotor Offset</label>
+                    <label>Rotor Position</label>
                     <select>
                         {this.populateNumbers()}
                     </select>

@@ -13,15 +13,15 @@ class Enigma extends Component {
         this.state = {
             output: "",
             characters: "",
-            rotorSettings: {}
+            rotorSettings: (composeRotors(rotorConfig[3], rotorConfig[2], rotorConfig[1], rotorConfig.reflector))
         }
 
         this.rotorConfig = rotorConfig;
-        let rotorsConfigTest = composeRotors(this.rotorConfig[3], this.rotorConfig[2], this.rotorConfig[1], this.rotorConfig.reflector);
+        // let rotorsConfigTest = composeRotors(this.rotorConfig[3], this.rotorConfig[2], this.rotorConfig[1], this.rotorConfig.reflector);
 
         this.typeChars = async (char) => {
             console.log("typechars called, char is: ", char, "this.state.characters is: ", this.state.characters)
-            const enigmaChar = processRotors(char.toUpperCase(), rotorsConfigTest);
+            const enigmaChar = processRotors(char.toUpperCase(), this.state.rotorSettings);
             this.setState({characters: (this.state.characters + await enigmaChar)})
         };
 
@@ -29,15 +29,13 @@ class Enigma extends Component {
 
         this.selectRotors = (rotor1, rotor2, rotor3, reflector) => this.setState({rotorSettings: composeRotors(rotor1, rotor2, rotor3, reflector)})
     }
-
-
-
+    
 
     render() {
-
         return (
             <div>
-                <Rotors setRotors={this.selectRotors}/>
+                <button onClick={() => console.log(this.state.rotorSettings)}>click me</button>
+                <Rotors setRotors={this.selectRotors} defaultRotorConfig={this.state.rotorSettings}/>
                 <Keyboard typeChars={this.typeChars}/>
                 <Plugboard />
                 <Output characters={this.state.characters} />
