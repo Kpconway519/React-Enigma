@@ -13,7 +13,7 @@ class Enigma extends Component {
         this.state = {
             output: "",
             characters: "",
-            rotorSettings: (composeRotors(rotorConfig[3], rotorConfig[2], rotorConfig[1], rotorConfig.reflector))
+            rotorSettings: (composeRotors(rotorConfig[1], rotorConfig[2], rotorConfig[3], rotorConfig.reflector))
         }
 
         this.rotorConfig = rotorConfig;

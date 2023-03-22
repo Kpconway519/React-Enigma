@@ -16,7 +16,7 @@ const processRotors = async (letter, settings) => {
 
 
     // increment the position of the first rotor every time. TODO: come in and add in the notch functionality.
-    rc[0].position === 26 ? rc[0].position = 1 : rc[0].position++;
+    rc[2].position === 26 ? rc[2].position = 1 : rc[2].position++;
 
 
     const findLetterPosition = async (rotor, letter, direction = "forwards") => {
@@ -49,20 +49,20 @@ const processRotors = async (letter, settings) => {
 
     // this is how it would work if the rotors didn't move
     
-    const rotor1return = await findLetterPosition(rc[0], letter);
-    console.log(rc[0].name)
+    const rotor1return = await findLetterPosition(rc[2], letter);
+    console.log(rc[2].name)
     // return await console.log(rotor1return, "rotor1return")
     var rotor2return = await findLetterPosition(rc[1], rotor1return);
     console.log(rotor2return, "rotor2return")
-    var rotor3return = await findLetterPosition(rc[2], rotor2return);
+    var rotor3return = await findLetterPosition(rc[0], rotor2return);
     console.log(rotor3return, "rotor3return")
     const reflectorReturn = reflector.wiring[(await alphabet.indexOf(rotor3return))];
     console.log(reflectorReturn, "reflectorReturn")
-    const rotor3backwards = await findLetterPosition(rc[2], reflectorReturn, "backwards");;
+    const rotor3backwards = await findLetterPosition(rc[0], reflectorReturn, "backwards");;
     console.log(rotor3backwards, "rotor3backwards")
     const rotor2backwards = await findLetterPosition(rc[1], rotor3backwards, "backwards");
     console.log(rotor2backwards, "rotor2backwards")
-    const result = await findLetterPosition(rc[0], rotor2backwards, "backwards");
+    const result = await findLetterPosition(rc[2], rotor2backwards, "backwards");
     // return console.log(result, 'result');
     return await result;
 }
