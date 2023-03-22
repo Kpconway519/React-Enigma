@@ -35,7 +35,7 @@ class Enigma extends Component {
         return (
             <div>
                 <button onClick={() => console.log(this.state.rotorSettings)}>click me</button>
-                <Rotors setRotors={this.selectRotors} defaultRotorConfig={this.state.rotorSettings}/>
+                <Rotors rotorSettings={this.state.rotorSettings} setRotors={this.selectRotors} defaultRotorConfig={this.state.rotorSettings}/>
                 <Keyboard typeChars={this.typeChars}/>
                 <Plugboard />
                 <Output characters={this.state.characters} />
