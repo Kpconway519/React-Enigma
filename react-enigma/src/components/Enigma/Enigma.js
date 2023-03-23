@@ -13,7 +13,8 @@ class Enigma extends Component {
         this.state = {
             output: "",
             characters: "",
-            rotorSettings: (composeRotors(rotorConfig[1], rotorConfig[2], rotorConfig[3], rotorConfig.reflector))
+            rotorSettings: (composeRotors(rotorConfig[1], rotorConfig[2], rotorConfig[3], rotorConfig.reflector)),
+            plugs: []
         }
 
         this.rotorConfig = rotorConfig;
@@ -28,16 +29,18 @@ class Enigma extends Component {
         this.handleCharacters = () => this.state.characters;
 
         this.selectRotors = (rotor1, rotor2, rotor3, reflector) => this.setState({rotorSettings: composeRotors(rotor1, rotor2, rotor3, reflector)})
+
+        this.updatePlugs = (plugsArray) => this.setState({plugs: [...this.state.plugs, plugsArray]})
     }
     
 
     render() {
         return (
             <div>
-                <button onClick={() => console.log(this.state.rotorSettings)}>click me</button>
+                <button onClick={() => console.log(this.state.plugs)}>click me</button>
                 <Rotors rotorSettings={this.state.rotorSettings} setRotors={this.selectRotors} defaultRotorConfig={this.state.rotorSettings}/>
                 <Keyboard typeChars={this.typeChars}/>
-                <Plugboard />
+                <Plugboard updatePlugs={this.updatePlugs} plugSettings={this.state.plugs}/>
                 <Output characters={this.state.characters} />
             </div>
 

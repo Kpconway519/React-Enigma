@@ -10,10 +10,7 @@ class Rotors extends Component {
             output: ""
         }
         this.setRotors = this.props.setRotors.bind(this);
-        this.rotorsReflector = this.props.defaultRotorConfig.reflector;
     }
-
-    // rotorsConfig = this.defaultRotorConfig.rotorsConfig;
 
     rotorWheels = [
         "I",
@@ -51,24 +48,21 @@ class Rotors extends Component {
     }
 
     setSelectedValue = (rotor, setting, value) => {
-        const reflector = this.rotorsReflector;
-        const inputRotorsConfig = this.props.defaultRotorConfig.rotorsConfig;
+        const reflector = this.props.defaultRotorConfig.reflector;
+        const newConfig = Array.from(this.props.defaultRotorConfig.rotorsConfig);
         // pull the 
         if (setting === "rotor") {
-            // pull rotor from rotorConfig.js
             const getRotor = rotorConfig[(this.romanNumToNumber(value))]
-            // this.rotorSettings
-            // this.setRotors({})
-            const newConfig = Array.from(inputRotorsConfig);
-
             newConfig[rotor] = getRotor;
             return this.setRotors(...newConfig, reflector)
         } 
         if (setting === "ring") {
-            // update local var and set to state.
+            newConfig[rotor].ringSetting = value;
+            return this.setRotors(...newConfig, reflector)
         } 
         if (setting === "position") {
-            // update local var and set to state.
+            newConfig[rotor].position = value;
+            return this.setRotors(...newConfig, reflector)
         } 
     }
 
@@ -79,9 +73,9 @@ class Rotors extends Component {
         return (
             // TODO pull from rotorConfig, and Object.assign position and ringSetting
             <div className={"rotorsContainer"}>
-                {console.log([...this.props.defaultRotorConfig.rotorsConfig], "defaultrotorconfig")}
-                <button onClick={() => this.setRotors(rotorConfig[2], rotorConfig[3], rotorConfig[4], rotorConfig.reflector)}>Set Rotors</button>
-                <button onClick={() => console.log(this.props.rotorSettings, this.props.rotorSettings.rotorsConfig[0].name)}>Check Updated Settings</button>
+                {/* {console.log([...this.props.defaultRotorConfig.rotorsConfig], "defaultrotorconfig")} */}
+                {/* <button onClick={() => this.setRotors(rotorConfig[2], rotorConfig[3], rotorConfig[4], rotorConfig.reflector)}>Set Rotors</button>
+                <button onClick={() => console.log(this.props.rotorSettings, this.props.rotorSettings.rotorsConfig[0].name)}>Check Updated Settings</button> */}
                 {
                     this.props.defaultRotorConfig.rotorsConfig.map((rotor, index) => {
                         const classNames = `rotor rotor${index}`;
@@ -94,12 +88,11 @@ class Rotors extends Component {
                                     {this.populateRotors()}
                                 </select>
                                 <label>Ring Setting</label>
-                                <select defaultValue={rotor.ringSetting}>
+                                <select value={this.props.rotorSettings.rotorsConfig[index].ringSetting} onChange={e => this.setSelectedValue(index, "ring" , e.target.value)}>
                                     {this.populateNumbers()}
                                 </select>
                                 <label>Rotor Position</label>
-                                <select defaultValue={rotor.position}>
-                                {/* <select defaultValue={rotor.position} value={this.props.rotorSettings[2].position} onChange={e => this.setSelectedValue(index, "position", e.target.value)}> */}
+                                <select value={this.props.rotorSettings.rotorsConfig[index].position} onChange={e => this.setSelectedValue(index, "position" , e.target.value)}>
                                     {this.populateNumbers()}
                                 </select>
                             </div>
